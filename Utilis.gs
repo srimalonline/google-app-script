@@ -46,6 +46,26 @@ function getFolderNames(root){
   return folderNames;
 }
 
+function cleanUpFolders(root, total){
+  if(total == null || total == NaN){
+    total = 5;
+  }
+
+  var names = getFolderNames(root);
+
+  names.sort(function(a,b){return b-a});
+
+  var folderTotal =names.length;
+
+  if(folderTotal > total){
+    for(var i= total-1; i < folderTotal; i++){
+      var folder = getFolder(names[i], false, root);
+      if(folder != null){
+        folder.setTrashed(true);
+      }
+    }
+  }
+}
 
 
 
