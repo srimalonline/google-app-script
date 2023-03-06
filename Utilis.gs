@@ -7,3 +7,6 @@ function findFileByName(name) {
   return null;
 }
 
+function getTimeStamp(){
+  return Math.round(new Date().getTime()/1000);
+}
