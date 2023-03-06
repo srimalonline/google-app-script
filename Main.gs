@@ -7,6 +7,8 @@ function main() {
 
 
   var text = activeSection.getText();
-  // var text = file.getBlob().getDataAsString();
-  Logger.log(text);
+
+  var newDocument = DriveApp.createFile("markdown-test.md", text, MimeType.PLAIN_TEXT);
+
+  // Logger.log(text);
 }
