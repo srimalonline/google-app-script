@@ -10,7 +10,7 @@ function main() {
 
   var newFolder = getFolder("MarkdownGen", true);
 
-  var folderNames = getFolderNames(newFolder);
+  cleanUpFolders(newFolder);
 
   var subFolder = getFolder("Output-"+getTimeStamp(),true, newFolder);
 
