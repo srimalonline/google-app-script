@@ -31,3 +31,26 @@ function getFolder(name, create, root){
   return folder;
 
 }
+
+function getFolderNames(root){
+  var folderIter = root.getFolders();
+  var folderNames = [];
+
+  while(folderIter.hasNext()){
+    var folder = folderIter.next();
+    var name = folder.getName();
+
+    folderNames.push(name);
+  }
+
+  return folderNames;
+}
+
+
+
+
+
+
+
+
+
