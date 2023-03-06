@@ -9,8 +9,40 @@ function convertToMarkdown(doc) {
   for(var i = 0; i < total; i++){
     var section = activeSection.getChild(i);
 
-    text += section.getText();
+    text += parseSection(section);
   }
 
   return text;
 }
+
+function parseSection(section){
+
+  var text = "";
+
+  var childern = section.getNumChildren();
+
+  if(childern>0){
+    var type = section.getType();
+
+    if(type == DocumentApp.ElementType.PARAGRAPH){
+      switch(section.getHeading()){
+        case DocumentApp.ParagraphHeading.HEADING2:
+        text += "#";
+        case DocumentApp.ParagraphHeading.HEADING1:
+        text += "#";
+        default:
+      }
+
+      if(text != ""){
+        text += " ";
+      }
+
+      text += section.getText();
+    }
+  }
+
+  return text + "\n";
+}
+
+
+
