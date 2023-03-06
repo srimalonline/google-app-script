@@ -7,6 +7,12 @@ function main() {
 
 
   var text = activeSection.getText();
-  // var text = file.getBlob().getDataAsString();
-  Logger.log(text);
+
+  var newFolder = getFolder("MarkdownGen", true);
+
+  var subFolder = getFolder("Output-"+getTimeStamp(),true, newFolder);
+
+  var newDocument = subFolder.createFile("markdown-test.md", text, MimeType.PLAIN_TEXT);
+
+  // Logger.log(text);
 }
