@@ -2,7 +2,15 @@
 function convertToMarkdown(doc) {
   var activeSection = doc.getActiveSection();
 
-  var text = activeSection.getText();
+  var text = "";
+
+  var total =activeSection.getNumChilern();
+
+  for(var i = 0; i < total; i++){
+    var section = activeSection.getChild(i);
+
+    text += section.getText();
+  }
 
   return text;
 }
