@@ -9,6 +9,9 @@ function main() {
   var text = activeSection.getText();
 
   var newDocument = DriveApp.createFile("markdown-test.md", text, MimeType.PLAIN_TEXT);
+  
+  // With timestamp
+  var newDocument = DriveApp.createFile("markdown-test-"+getTimeStamp()+".md", text, MimeType.PLAIN_TEXT);
 
   // Logger.log(text);
 }
