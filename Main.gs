@@ -3,10 +3,15 @@ function main() {
 
   var doc = DocumentApp.openById(file.getId());
 
-  var activeSection = doc.getActiveSection();
+  var markdown = convertToMarkdown(doc);
 
+  var newFolder = getFolder("MarkdownGen", true);
 
-  var text = activeSection.getText();
-  // var text = file.getBlob().getDataAsString();
-  Logger.log(text);
+  cleanUpFolders(newFolder);
+
+  var subFolder = getFolder("Output-"+getTimeStamp(),true, newFolder);
+
+  var newDocument = subFolder.createFile("markdown-test.md", markdown, MimeType.PLAIN_TEXT);
+
+  // Logger.log(text);
 }
