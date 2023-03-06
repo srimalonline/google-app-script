@@ -4,7 +4,7 @@ function convertToMarkdown(doc) {
 
   var text = "";
 
-  var total =activeSection.getNumChildern();
+  var total =activeSection.getNumChildren();
 
   for(var i = 0; i < total; i++){
     var section = activeSection.getChild(i);
