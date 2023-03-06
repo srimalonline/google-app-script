@@ -37,12 +37,33 @@ function parseSection(section){
         text += " ";
       }
 
-      text += section.getText();
+      for(var i=0; i< childern; i++){
+        var element = section.getChild(i);
+
+        text += parsingElement(element);
+      }
     }
   }
 
   return text + "\n";
 }
+
+function parsingElement(element){
+  var text = "";
+
+  var type = element.getType();
+
+  if(type == DocumentApp.ElementType.TEXT){
+    text += element.getText();
+  }else if(type == DocumentApp.ElementType.INLINE_IMAGE){
+
+    text += "[IMAGE]";
+    
+  }
+
+  return text += "\n";
+}
+
 
 
 
