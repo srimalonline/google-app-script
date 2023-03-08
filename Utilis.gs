@@ -66,3 +66,5 @@ function cleanUpFolders(root, total){
     }
   }
 }
+
+// 
