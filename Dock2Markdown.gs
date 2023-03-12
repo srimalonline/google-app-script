@@ -1,6 +1,5 @@
 //this function will convert google docs files to md files
 function convertToMarkdown(doc, images) {
-  var imageCounter = 0;
 
   var activeSection = doc.getActiveSection();
 
@@ -11,13 +10,13 @@ function convertToMarkdown(doc, images) {
   for(var i = 0; i < total; i++){
     var section = activeSection.getChild(i);
 
-    text += parseSection(section, imageCounter, images);
+    text += parseSection(section, images);
   }
 
   return text;
 }
 
-function parseSection(section, imageCounter, images){
+function parseSection(section, images){
 
   var text = "";
 
@@ -42,7 +41,7 @@ function parseSection(section, imageCounter, images){
       for(var i=0; i< childern; i++){
         var element = section.getChild(i);
 
-        text += parsingElement(element, imageCounter, images);
+        text += parsingElement(element,  images);
       }
     }
   }
@@ -50,7 +49,7 @@ function parseSection(section, imageCounter, images){
   return text + "\n";
 }
 
-function parsingElement(element, imageCounter, images){
+function parsingElement(element, images){
   var text = "";
 
   var type = element.getType();
@@ -67,7 +66,6 @@ function parsingElement(element, imageCounter, images){
 
   }else if(type == DocumentApp.ElementType.INLINE_IMAGE){
 
-    imageCounter ++;
 
     var imageBlob = element.getBlob();
 
@@ -79,8 +77,8 @@ function parsingElement(element, imageCounter, images){
     }
 
     if(extenstion != ""){
-      imageCounter ++;
-      var name = "images/image-"+imageCounter+extenstion;
+    
+      var name = "images/image-"+images.length+extenstion;
 
       imageBlob.setName(name);
 
