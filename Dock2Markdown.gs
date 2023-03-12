@@ -72,9 +72,26 @@ function parsingElement(element){
   return text += "\n";
 }
 
-function formatText(element){
-  var text = element.getText();
+function formatText(textElement){
 
+  var text = textElement.getText();
+
+  if(!textElement.getTextAttributeIndices)
+    return text;
+
+  var offsets = textElement.getTextAttributeIndices();
+  var lastOffset = text.length;
+
+  for( var i = offsets.length - 1; i >= 0; i --){
+    var offset = offsets[i]
+    var url = textElement.getLinkUrl(offset);
+
+    if(url){
+      text =text.substring(0, offset) + "[" + text.substring(offset, lastOffset)+ "] ("+ url + ")" + text.substring(lastOffset)
+    }
+
+    lastOffset = offset;
+  }
   return text;
 }
 
