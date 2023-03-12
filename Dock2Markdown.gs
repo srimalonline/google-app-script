@@ -48,7 +48,7 @@ function parseSection(section){
   return text + "\n";
 }
 
-function parsingElement(element){
+function parsingElement(element, imageCounter, images){
   var text = "";
 
   var type = element.getType();
@@ -65,7 +65,29 @@ function parsingElement(element){
 
   }else if(type == DocumentApp.ElementType.INLINE_IMAGE){
 
-    text += "[IMAGE]";
+    imageCounter ++;
+
+    var imageBlob = element.getBlob();
+
+    var contentType = imageBlob.getContentType();
+    var extenstion = "";
+
+    if(/\/png$/.test(contentType)){
+      extenstion = ".png";
+    }
+
+    if(extenstion != ""){
+      imageCounter ++;
+      var name = "images/image-"+imageCounter+extenstion;
+
+      imageBlob.setName(name);
+
+      images.push(imageBlob);
+      text += "![image alt text]("+name+")";
+
+    }
+
+    
     
   }
 
