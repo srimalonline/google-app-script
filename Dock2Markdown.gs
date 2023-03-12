@@ -54,7 +54,15 @@ function parsingElement(element){
   var type = element.getType();
 
   if(type == DocumentApp.ElementType.TEXT){
-    text += element.getText();
+
+    var font = element.getFontFamily();
+
+    if(font == "Courier New"){
+      text += "     "+ element.getText();
+    } else {
+      text += formatText(element);
+    }
+
   }else if(type == DocumentApp.ElementType.INLINE_IMAGE){
 
     text += "[IMAGE]";
@@ -64,4 +72,12 @@ function parsingElement(element){
   return text += "\n";
 }
 
-// test
+function formatText(element){
+  var text = element.getText();
+
+  return text;
+}
+
+
+
+
