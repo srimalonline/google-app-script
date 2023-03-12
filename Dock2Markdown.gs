@@ -1,5 +1,7 @@
 //this function will convert google docs files to md files
-function convertToMarkdown(doc) {
+function convertToMarkdown(doc, images) {
+  var imageCounter = 0;
+
   var activeSection = doc.getActiveSection();
 
   var text = "";
@@ -9,13 +11,13 @@ function convertToMarkdown(doc) {
   for(var i = 0; i < total; i++){
     var section = activeSection.getChild(i);
 
-    text += parseSection(section);
+    text += parseSection(section, imageCounter, images);
   }
 
   return text;
 }
 
-function parseSection(section){
+function parseSection(section, imageCounter, images){
 
   var text = "";
 
@@ -40,7 +42,7 @@ function parseSection(section){
       for(var i=0; i< childern; i++){
         var element = section.getChild(i);
 
-        text += parsingElement(element);
+        text += parsingElement(element, imageCounter, images);
       }
     }
   }
